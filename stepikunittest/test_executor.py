@@ -1,5 +1,5 @@
 from stepikunittest.unittest_executor import UnittestExecutor
-from stepikunittest.unittest_formatter import UnittestFormatter
+from stepikunittest.report_creator import UnittestReportCreator
 
 
 class TestExecutor:
@@ -7,7 +7,7 @@ class TestExecutor:
                  title=True, description=True, traceback=True, msg_limit=5):
         self._executor = UnittestExecutor(traceback, failfast)
         self._executor.add_tests(test_classes_list or [])
-        self._formatter = UnittestFormatter(statistics, title, description, msg_limit)
+        self._reporter = UnittestReportCreator(statistics, title, description, msg_limit)
 
     def __call__(self):
-        return self._formatter(self._executor())
+        return self._reporter(self._executor())
