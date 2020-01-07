@@ -55,7 +55,7 @@ class UnittestReportCreator:
     def _create_message(self, tests_result):
         """Returns a string with a report of failed tests or errors.
 
-        Note.
+        Notes.
         -----
         The attributes
         title, description, traceback determine what information will be added to
@@ -157,4 +157,4 @@ class UnittestReportCreator:
         return stats_line + self._create_message(tests_result)
 
 
-print(help(UnittestFormatter))
+
