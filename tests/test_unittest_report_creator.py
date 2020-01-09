@@ -23,3 +23,10 @@ def test_method_create_statistics_msg(result_tests):
     expected = SU.MSG_TEMPLATES.statistics.format('3', '1', '1', '1')
     stat_line = obj.create_statistics_msg(result_tests)
     assert stat_line == expected
+
+
+def test_method_create_statistics_msg_all_tests_passed(result_tests_all_tests_passed):
+    obj = SU.UnittestReportCreator(True, True, True, 5, SU.MSG_TEMPLATES)
+    expected = SU.MSG_TEMPLATES.statistics.format('2', '2', '0', '0')
+    stat_line = obj.create_statistics_msg(result_tests_all_tests_passed)
+    assert stat_line == expected
