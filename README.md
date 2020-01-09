@@ -2,7 +2,9 @@
 # stepikunittest
 Stepikunittest is a micro library that provides a wrapper for the unittest module from the Python standard library. It makes it easy to add the ability to use unittest to test assignments on the Stepik educational platform.
 ## Documentation
-You can find out the description of the project, the reasons for its occurrence and the user manual from the wiki
+You can find out the description of the project, the reasons for its occurrence and the user manual from the wiki.
+
+You can also find an [example](https://stepik.org/lesson/295437/step/2) task on the Stepik platform.
 
 ## Authors
 
