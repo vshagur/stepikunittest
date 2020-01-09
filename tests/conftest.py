@@ -1,5 +1,7 @@
 import unittest
+
 import pytest
+
 
 @pytest.fixture()
 def classes_for_tests():
@@ -15,6 +17,7 @@ def classes_for_tests():
             raise TypeError
 
     return TestOne, TestTwo
+
 
 @pytest.fixture()
 def result_tests(classes_for_tests):
