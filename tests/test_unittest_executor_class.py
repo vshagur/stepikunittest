@@ -25,19 +25,19 @@ def test_create_unitest_executor(traceback, failfast):
     assert obj._test_suite.countTestCases() == 0
 
 
-def test_method_add_tests(classes_for_tests):
-    TestOne, TestTwo = classes_for_tests
+def test_method_add_tests(unittest_classes):
+    TestAllTestPassed, TestError, TestFail, TestAllCases = unittest_classes
     obj = SU.UnittestExecutor(True, True)
-    obj.add_tests(TestOne, TestTwo)
-    assert obj._test_suite.countTestCases() == 3
+    obj.add_tests(TestAllTestPassed, TestError, TestFail, TestAllCases)
+    assert obj._test_suite.countTestCases() == 8
 
 
-def test_method_execute(classes_for_tests):
-    TestOne, TestTwo = classes_for_tests
+def test_method_execute(unittest_classes):
+    TestAllTestPassed, TestError, TestFail, TestAllCases = unittest_classes
     obj = SU.UnittestExecutor(True, False)
-    obj.add_tests(TestOne, TestTwo)
+    obj.add_tests(TestAllTestPassed, TestError, TestFail, TestAllCases)
     result = obj.execute()
     assert isinstance(result, unittest.TestResult)
-    assert len(result.failures) == 1
-    assert len(result.errors) == 1
-    assert result.testsRun == 3
+    assert len(result.failures) == 2
+    assert len(result.errors) == 2
+    assert result.testsRun == 8

@@ -4,40 +4,54 @@ import pytest
 
 
 @pytest.fixture()
-def classes_for_tests():
-    class TestOne(unittest.TestCase):
+def unittest_classes():
+    class TestAllTestPassed(unittest.TestCase):
         def test_1(self):
-            self.assertEqual(1, 0)
-
-        def test_2(self):
-            self.assertEqual(3, 3)
-
-    class TestTwo(unittest.TestCase):
-        def test_3(self):
-            raise TypeError
-
-    return TestOne, TestTwo
-
-
-@pytest.fixture()
-def class_for_tests_correct():
-    class TestOne(unittest.TestCase):
-        def test_1(self):
+            """TestAllTestPassed, test_1"""
             self.assertEqual(1, 1)
 
         def test_2(self):
+            """TestAllTestPassed, test_2"""
             self.assertEqual(3, 3)
 
-    return TestOne
+    class TestError(unittest.TestCase):
+        """TestError, test_3"""
+
+        def test_3(self):
+            raise TypeError
+
+    class TestFail(unittest.TestCase):
+        def test_4(self):
+            """TestFail, test_4"""
+            self.assertEqual(3, 0)
+
+    class TestAllCases(unittest.TestCase):
+        def test_5(self):
+            """TestAllCases, test_5"""
+            self.assertEqual(1, 1)
+
+        def test_6(self):
+            """TestAllCases, test_6"""
+            self.assertEqual(3, 3)
+
+        def test_7(self):
+            """TestAllCases, test_7"""
+            raise TypeError
+
+        def test_8(self):
+            """TestAllCases, test_8"""
+            self.assertEqual(3, 0)
+
+    return TestAllTestPassed, TestError, TestFail, TestAllCases
 
 
 @pytest.fixture()
-def result_tests(classes_for_tests):
+def result_tests(unittest_classes):
     result = unittest.TestResult()
     test_suite = unittest.TestSuite()
     test_loader = unittest.TestLoader()
 
-    for test_class in classes_for_tests:
+    for test_class in unittest_classes:
         tests = test_loader.loadTestsFromTestCase(test_class)
         test_suite.addTest(tests)
 
@@ -46,11 +60,12 @@ def result_tests(classes_for_tests):
 
 
 @pytest.fixture()
-def result_tests_all_tests_passed(class_for_tests_correct):
+def result_tests_all_tests_passed(unittest_classes):
+    TestAllTestPassed, TestError, TestFail, TestAllCases = unittest_classes
     result = unittest.TestResult()
     test_suite = unittest.TestSuite()
     test_loader = unittest.TestLoader()
-    tests = test_loader.loadTestsFromTestCase(class_for_tests_correct)
+    tests = test_loader.loadTestsFromTestCase(TestAllTestPassed)
     test_suite.addTest(tests)
     test_suite.run(result)
     return result

@@ -20,7 +20,7 @@ def test_create_unittest_report_creator(statistics, title, description, msg_limi
 
 def test_method_create_statistics_msg(result_tests):
     obj = SU.UnittestReportCreator(True, True, True, 5, SU.MSG_TEMPLATES)
-    expected = SU.MSG_TEMPLATES.statistics.format('3', '1', '1', '1')
+    expected = SU.MSG_TEMPLATES.statistics.format('8', '4', '2', '2')
     stat_line = obj.create_statistics_msg(result_tests)
     assert stat_line == expected
 
