@@ -50,8 +50,6 @@ def test_method_create_report_all_tests_passed(result_tests_all_tests_passed, st
     else:
         assert stat_line not in feedback
 
-    assert SU.MSG_TEMPLATES.correct in feedback
-
 
 @pytest.mark.parametrize('description', (True, False))
 @pytest.mark.parametrize('title', (True, False))

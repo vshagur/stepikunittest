@@ -25,7 +25,7 @@ from collections import namedtuple
 
 MessageTemplates = namedtuple(
     'MessageTemplates',
-    ['correct', 'statistics', 'failed', 'error', 'description' ])
+    ['correct', 'statistics', 'failed', 'error', 'description'])
 
 MSG_TEMPLATES = MessageTemplates(
     'All tests passed!\n',
