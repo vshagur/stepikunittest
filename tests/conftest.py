@@ -98,3 +98,4 @@ def result_tests_fail(unittest_classes):
     test_suite.addTest(tests)
     test_suite.run(result)
     return result
+
