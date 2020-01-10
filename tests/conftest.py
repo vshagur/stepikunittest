@@ -48,6 +48,22 @@ def unittest_classes():
 @pytest.fixture()
 def result_tests(unittest_classes):
     result = unittest.TestResult()
+    result.tb_locals = True
+    test_suite = unittest.TestSuite()
+    test_loader = unittest.TestLoader()
+
+    for test_class in unittest_classes:
+        tests = test_loader.loadTestsFromTestCase(test_class)
+        test_suite.addTest(tests)
+
+    test_suite.run(result)
+    return result
+
+
+@pytest.fixture()
+def result_tests_failfast_true(unittest_classes):
+    result = unittest.TestResult()
+    result.failfast = True
     test_suite = unittest.TestSuite()
     test_loader = unittest.TestLoader()
 
