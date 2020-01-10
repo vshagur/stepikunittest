@@ -85,3 +85,16 @@ def result_tests_all_tests_passed(unittest_classes):
     test_suite.addTest(tests)
     test_suite.run(result)
     return result
+
+
+@pytest.fixture()
+def result_tests_fail(unittest_classes):
+    TestAllTestPassed, TestError, TestFail, TestAllCases = unittest_classes
+    result = unittest.TestResult()
+    result.tb_locals = True
+    test_suite = unittest.TestSuite()
+    test_loader = unittest.TestLoader()
+    tests = test_loader.loadTestsFromTestCase(TestFail)
+    test_suite.addTest(tests)
+    test_suite.run(result)
+    return result

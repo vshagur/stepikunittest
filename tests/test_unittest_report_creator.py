@@ -87,3 +87,40 @@ def test_method_create_report_error_case(result_tests, statistics, title, descri
     traceback = 'Traceback (most recent call last)'
 
     assert traceback in feedback
+
+
+@pytest.mark.parametrize('description', (True, False))
+@pytest.mark.parametrize('title', (True, False))
+@pytest.mark.parametrize('statistics', (True, False))
+def test_method_create_report_fail_case(result_tests_fail, statistics, title,
+                                        description):
+    obj = SU.UnittestReportCreator(statistics, title, description, 5, SU.MSG_TEMPLATES)
+    feedback = obj.create_report(result_tests_fail)
+    # check statistics line
+    stat_line = SU.MSG_TEMPLATES.statistics.format('1', '0', '1', '0')
+
+    if statistics:
+        assert stat_line in feedback
+    else:
+        assert stat_line not in feedback
+
+    # check title line
+    title_line = SU.MSG_TEMPLATES.failed.format('test_4')
+
+    if title:
+        assert title_line in feedback
+    else:
+        assert title_line not in feedback
+
+    # check description line
+    description_line = SU.MSG_TEMPLATES.description.format('TestFail, test_4')
+
+    if description:
+        assert description_line in feedback
+    else:
+        assert description_line not in feedback
+
+    # check traceback
+    traceback = 'Traceback (most recent call last)'
+
+    assert traceback in feedback
