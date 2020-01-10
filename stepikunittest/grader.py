@@ -140,7 +140,7 @@ class UnittestReportCreator:
             passed = total - 1
             failed = 1 - errors
         else:
-            passed = total - failed - failed
+            passed = total - failed - errors
 
         return self.msg_templates.statistics.format(total, passed, failed, errors)
 
